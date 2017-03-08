@@ -34,7 +34,7 @@
         </form>
       
     </div>
-
+    <center><a href="index.php">Go back</a></center>
     <footer>
     </footer>
     

@@ -1,8 +1,8 @@
 <?php
 function getDatabaseConnection() {
-    $dbHost = "";
-    $dbName = "";
-    $username = "";
+    $dbHost = "localhost";
+    $dbName = "MPJC";
+    $username = "root";
     $password = "";
         
     $dbConn = new PDO("mysql:host=$dbHost;dbname=$dbName", $username, $password);

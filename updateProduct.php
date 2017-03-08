@@ -14,6 +14,22 @@
     return $record;
    
  }
+function displayCategories() {
+	$organization = getProductById();
+    $sql = "SELECT * FROM Categories order by category";
+    $records = getDataBySQL($sql);
+    echo " <select name=\"CategoryID\"> ";
+   
+    echo "<option selected=\"selected\" value=\"". $organization['CategoryID']."\" ></option>";
+    foreach($records as $record) {
+		echo "<option value=\"" . $record['CategoryID']. "\">" .$record['category'] . "</option>";
+		
+	}
+	
+    echo "</select> <br/>";
+      
+ 
+}
 
 if (isset($_GET['updateForm'])) {  //admin submitted the Update Form
     
@@ -144,39 +160,7 @@ echo $_GET["INTERNAL_COMMENTS"] . "&nbsp;" . gettype($_GET["INTERNAL_COMMENTS"])
  Organization Name: <input type="text" value="<?=$organization['ORG_NAME']?>" name="ORG_NAME" /> <br />
    Organization Name (short): <input type="text" value="<?= $organization['ORG_NAME_SHORT'] ?>" name="ORG_NAME_SHORT" /> <br />
 
-  Category: <select name="CategoryID">
-	 
-	 		<option selected="selected" value="<?=$organization['CategoryID']?>" ></option>
-		<option value=1>Access to healthcare</option>
-		<option value=2>Adult Literacy/ESL</option>
-		<option value=3>Arts for Social Justice</option>
-		<option value=4>At Risk Youth</option>
-		<option value=5>Criminal Justice Reform</option>
-		<option value=6>Disabilities</option>
-		<option value=7>Domestic violence/sexual assault</option>
-		<option value=8>Education</option>
-		<option value=9>Environment</option>
-		<option value=10>Gender Justice</option>
-		<option value=11>Gun Violence</option>
-		<option value=12>HIV/Aids</option>
-		<option value=13>Housing & Homelessness</option>
-		<option value=14>Hunger & Food Justice</option>
-		<option value=15>Immigration</option>
-		<option value=16>Islamophobia</option>
-		<option value=17>Job Readiness</option>
-		<option value=18>Legal Assistance</option>
-		<option value=19>LGBTQI</option>
-		<option value=20>Media & Democracy</option>
-		<option value=21>Politics & Government</option>
-		<option value=22>Racial Justice</option>
-		<option value=23>Reproductive Rights</option>
-		<option value=24>Seniors</option>
-		<option value=25>Veterans</option>
-		<option value=26>Voting Rights</option>
-		<option value=27>Worker's Rights</option>
-
-    </select> <br/>
-      
+  Category:  <?php displayCategories(); ?>
 	Description: <textarea rows="4" cols="20" name="ORG_DESC" ><?php echo $organization['ORG_DESC'];?></textarea><br />
 	Web url: <input type="text" value=<?=$organization['WEB_URL']?> name="WEB_URL" /> <br />
 	Facebook url: <input type="text" value=<?=$organization['FACEBOOK_URL']?> name="FACEBOOK_URL" /> <br />
