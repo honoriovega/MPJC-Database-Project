@@ -14,7 +14,7 @@ $conn = getDatabaseConnection();
 function displayAllProducts(){
 	
 
-    $sql = "SELECT * FROM Organizations";
+    $sql = "SELECT * FROM Organizations order by ORG_NAME";
     $records = getDataBySQL($sql);
 
 

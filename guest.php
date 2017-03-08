@@ -4,8 +4,8 @@ $conn = getDatabaseConnection();
 function displayCategories() {
     $sql = "SELECT * FROM Categories order by category";
     $records = getDataBySQL($sql);
-    echo " <select name=\"CategoryID\" id=\"category\"> ";
-   
+    echo " <select name=\"CategoryID\" id=\"CategoryID\"> ";
+    echo "<option value=\"0\">All</option>";
     foreach($records as $record) {
 		echo "<option value=\"" . $record['CategoryID']. "\">" .$record['category'] . "</option>";
 		
@@ -25,21 +25,29 @@ function displayCategories() {
     
     <body>
         <center><h1>Search Database</h1></center>
-        <?php displayCategories(); ?>
+        Organization Name: <input type="text" id="ORG_NAME" />
+
+        Categories: <?php displayCategories(); ?>
         <button id="submit">Search</button>
         <div id='content'></div>
     </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
-    $("button").click(function(){
-        var category = document.getElementById('category').value;
-        console.log(category);
-    
-        $.ajax({url: "getinfo.php", data : {category : category}, success: function(result){
+    $("#submit").click(function(){
+        var CategoryID = document.getElementById('CategoryID').value;
+        console.log(CategoryID);
+        
+        var ORG_NAME = document.getElementById('ORG_NAME').value;
+
+        $.ajax({url: "getinfo.php", 
+        data : {CategoryID : CategoryID, ORG_NAME : ORG_NAME}, 
+        success: function(result){
             $("#content").html(result);
         }});
         
     });
+
+
         
     </script>
 </html>
