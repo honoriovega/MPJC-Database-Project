@@ -35,6 +35,13 @@ function displayAllProducts(){
           echo "<td> <form action=updateProduct.php>";
           echo "<input type='hidden' name='ORG_ID' value='".$record['ORG_ID'] . "'/>";
           echo "<input type='submit' value='Update'/></form> </td>";
+          
+          
+          echo "<td> <form action=deleteProduct.php>";
+          echo "<input type='hidden' name='ORG_ID' value='".$record['ORG_ID'] . "'/>";
+          echo "<input type='submit' value='Delete'/></form> </td>";
+          
+          
           echo "</tr>";
         } //endForeach
         echo "</table>";
